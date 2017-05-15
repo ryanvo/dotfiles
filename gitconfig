@@ -1,34 +1,182 @@
 [user]
-	name = Adam Stankiewicz
-	email = sheerun@sher.pl
-	signingkey = FB78CBD7
-
-[commit]
-	gpgsign = true
+	email = ryanvo@seas.upenn.edu
+	name = Ryan Vo
 
 [core]
 	whitespace = warn,space-before-tab,trailing-space
 	excludesfile = ~/.gitignore
-	pager = less -x3,2
 
 [alias]
-	st = status -sb
-	ci = commit
-	br = branch -vv
+  prune = fetch --prune
+  # Because I constantly forget how to do this
+  # https://git-scm.com/docs/git-fetch#git-fetch--p
+
+  undo = reset --soft HEAD^
+  # Not quite as common as an amend, but still common
+  # https://git-scm.com/docs/git-reset#git-reset-emgitresetemltmodegtltcommitgt
+
+  stash-all = stash save --include-untracked
+  # We wanna grab those pesky un-added files!
+  # https://git-scm.com/docs/git-stash
+
+
+	a = add
+	b = branch -vv
+	c = commit
+	d = diff
+	f = fetch
+	g = grep
+    l = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+	m = merge
+	o = checkout
+	p = pull
+	r = remote
+	s = status -sb
+	w = whatchanged
+
+	### add ###
+
+	# add all
+	aa = add --all
+
+	# add by patch - looks at each change, and asks if we want to put it in the repo.
+	ap = add --patch
+
+	# add just the files that are updated.
+	au = add --update
+
+	### branch ###
+
+	# branch - edit the description
+	be = branch --edit-description
+
+	# branch and only list branches whose tips are reachable from the specified commit (HEAD if not specified).
+	bm = branch --merged
+
+	# branch and only list branches whose tips are not reachable from the specified commit (HEAD if not specified).
+	bnm = branch --no-merged
+
+	### commit ###
+
+	# commit - amend the tip of the current branch rather than creating a new commit.
+	ca = commit --amend
+
+	# commit - amend the tip of the current branch, and do not edit the message.
+	can = commit --amend --no-edit
+
+	# commit interactive
+	ci = commit --interactive
+
+	# commit with a message
+	cm = commit --message
+
+	### checkout ###
+
+	# checkout - update the working tree to match a branch or paths. [same as "o" for "out"]
 	co = checkout
-	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+
+	### cherry-pick ###
+
+	# cherry-pick - apply the changes introduced by some existing commits; useful for moving small chunks of code between branches.
 	cp = cherry-pick
+
+	# cherry-pick without making a commit, and when when recording the commit, append a line that says "(cherry picked from commit ...)"
+	cp-nx = cherry-pick --no-commit -x
+
+	### diff ###
+
+	# diff - show changes not yet staged
+	dc = diff --cached
+
+	# diff - changes about to be commited
+	ds = diff --staged
+
+	# diff - show changes but by word, not line
+	dw = diff --word-diff
+
+	### clean ###
+
+	# clean everything to be pristine
+	cleanest = clean -ffdx
+
+	### grep ###
+
+	# grep with grouping of the output lines
+	gg =  grep --break --heading --line-number
+
+	### log ###
+
+	# log with a text-based graphical representation of the commit history.
+	lg = log --graph
+
+	# log with one line per item.
+	lo = log --oneline
+
+	# log with patch generation.
+	lp = log --patch
+
+	# log with items appearing in topological order, i.e. descendant commits are shown before their parents.
+	lt = log --topo-order
 
 [color]
 	ui = true
 
+[merge]
+  # ff = only
+  # I pretty much never mean to do a real merge, since I use a rebase workflow.
+  # Note: this global option applies to all merges, including those done during a git pull
+  # https://git-scm.com/docs/git-config#git-config-mergeff
+
+  conflictstyle = diff3
+  # Standard diff is two sets of final changes. This introduces the original text before each side's changes.
+  # https://git-scm.com/docs/git-config#git-config-mergeconflictStyle
+
+# [commit]
+#   gpgSign = true
+#   # "other people can trust that the changes you've made really were made by you"
+#   # https://help.github.com/articles/about-gpg/
+#   # https://git-scm.com/docs/git-config#git-config-commitgpgSign
+
 [push]
-	default = current
-	followTags = true
+  default = simple
+  # "push the current branch back to the branch whose changes are usually integrated into the current branch"
+  # "refuse to push if the upstream branch’s name is different from the local one"
+  # https://git-scm.com/docs/git-config#git-config-pushdefault
+
+  followTags = true
+  # Because I get sick of telling git to do it manually
+  # https://git-scm.com/docs/git-config#git-config-pushfollowTags
+
+[status]
+  showUntrackedFiles = all
+  # Sometimes a newly-added folder, since it's only one line in git status, can slip under the radar.
+  # https://git-scm.com/docs/git-config#git-config-statusshowUntrackedFiles
+
+[transfer]
+  fsckobjects = true
+  # To combat repository corruption!
+  # Note: this global option applies during receive and transmit
+  # https://git-scm.com/docs/git-config#git-config-transferfsckObjects
+  # via https://groups.google.com/forum/#!topic/binary-transparency/f-BI4o8HZW0
+
+
+# A nice little github-like colorful, split diff right in the console.
+# via http://owen.cymru/github-style-diff-in-terminal-with-icdiff/
+[diff]
+  tool = icdiff
+[difftool]
+  prompt = false
+[difftool "icdiff"]
+  cmd = /usr/local/bin/icdiff --line-numbers $LOCAL $REMOTE
+
+[stash]
+	showPatch = true
+
+[rebase]
+	autostash = true
+
+[log]
+	decorate = full
 
 [rerere]
 	enabled = true
-
-[url "git@github.com:"]
-	pushInsteadOf = "git://github.com/"
-	pushInsteadOf = "https://github.com/"
