@@ -1,44 +1,11 @@
-# Set `open` tool as default `BROWSER` on OS X.
-if [[ "$OSTYPE" == darwin* ]]; then
-  export BROWSER='open'
+# Ensure that a non-login, non-interactive shell has a defined environment.
+if [[ "$SHLVL" -eq 1 && ! -o LOGIN && -s "${ZDOTDIR:-$HOME}/.zprofile" ]]; then
+  source "${ZDOTDIR:-$HOME}/.zprofile"
 fi
 
-# Ensure locale settings are properly set-up.
-if [[ -z "$LANG" ]]; then
-  export LANG='en_US.UTF-8'
-fi
+# For Haskell
+export PATH="/usr/local/bin:$PATH"
+export PATH=$HOME/.local/bin:$PATH
 
-export EDITOR=vim
-
-# Keep only the first occurence in path, cdpath etc.
-typeset -gU cdpath fpath mailpath path
-
-# Set the list of directories that Zsh searches for programs.
-path=(
-  ./bin
-  $HOME/.rbenv/shims
-  $HOME/.rbenv/bin
-  $HOME/.cabal/bin
-  /usr/local/heroku/bin
-  $HOME/.bin
-  $GOPATH/bin
-  /usr/local/opt/llvm/bin
-  /usr/local/opt/coreutils/libexec/gnubin
-  /usr/local/share/npm/bin
-  /usr/local/{bin,sbin}
-  $path
-)
-
-if command -v foo >/dev/null 2>&1; then
-  path=(
-    $(brew --prefix homebrew/php/php56)/bin
-    $path
-  )
-fi
-
-export LESS='-R -F -X -n'
-
-export FZF_DEFAULT_COMMAND='ag -l -g ""'
-export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-
-export SHELL=/usr/local/bin/zsh
+# Don’t clear the screen after quitting a manual page
+export MANPAGER="less -X"
