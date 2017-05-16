@@ -67,6 +67,8 @@
 	# commit interactive
 	ci = commit --interactive
 
+    # commit all with message
+    cam = commit --all --message
 	# commit with a message
 	cm = commit --message
 

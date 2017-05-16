@@ -1,9 +1,7 @@
+# to do
 brew "zsh"
-brew "ctags"
 brew "vim"
-brew "ack"
 brew "htop"
-brew "reattach-to-user-namespace"
 brew "cmake"
 brew "fzf"
 brew "nvm"

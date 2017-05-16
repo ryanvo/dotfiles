@@ -52,26 +52,10 @@ Plug 'fleischie/vim-styled-components'
 " Allow to :Rename files
 Plug 'danro/rename.vim'
 
-Plug 'flowtype/vim-flow'
-
 " Automatically find root project directory
 Plug 'airblade/vim-rooter'
 let g:rooter_disable_map = 1
 let g:rooter_silent_chdir = 1
-
-" Expand / wrap hashes etc.
-Plug 'AndrewRadev/splitjoin.vim'
-nmap sj :SplitjoinSplit<cr>
-nmap sk :SplitjoinJoin<cr>
-
-Plug 'fatih/vim-go', { 'for': 'go' }
-let g:go_fmt_command = "goimports"
-Plug 'nsf/gocode', { 'rtp': 'vim', 'do': '~/.vim/plugged/gocode/vim/symlink.sh', 'for': 'go' }
-
-Plug 'moll/vim-node', { 'for': 'javascript' }
-
-" Navitate freely between tmux and vim
-Plug 'christoomey/vim-tmux-navigator'
 
 " Nice column aligning with <Enter>
 Plug 'junegunn/vim-easy-align'
@@ -99,9 +83,6 @@ Plug 'vim-scripts/IndexedSearch'
 Plug 'vim-scripts/SmartCase'
 Plug 'vim-scripts/gitignore'
 
-Plug 'junegunn/goyo.vim'
-
-Plug 'vim-ruby/vim-ruby'
 
 call plug#end()
 
