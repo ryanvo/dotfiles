@@ -5,6 +5,16 @@
 #   Sorin Ionescu <sorin.ionescu@gmail.com>
 #
 
+#
+# Change the paramters set in the zsh folder
+#
+for i in ~/.zsh/*.sh; do source $i; done
+
+#
+# fzf
+#
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
 # Start ssh-agent
 eval $(keychain --nogui --eval --quiet id_rsa ~/.ssh/id_rsa)
 

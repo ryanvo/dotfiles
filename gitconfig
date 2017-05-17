@@ -155,7 +155,7 @@
   # https://git-scm.com/docs/git-config#git-config-statusshowUntrackedFiles
 
 [transfer]
-  fsckobjects = true
+  # fsckobjects = true
   # To combat repository corruption!
   # Note: this global option applies during receive and transmit
   # https://git-scm.com/docs/git-config#git-config-transferfsckObjects
@@ -166,8 +166,10 @@
 # via http://owen.cymru/github-style-diff-in-terminal-with-icdiff/
 [diff]
   tool = icdiff
+
 [difftool]
   prompt = false
+
 [difftool "icdiff"]
   cmd = /usr/local/bin/icdiff --line-numbers $LOCAL $REMOTE
 

@@ -10,9 +10,8 @@ source ~/.plugrc
 
 call plug#begin()
 
-Plug 'sheerun/vimrc'
+Plug 'ryanvo/vimrc'
 Plug 'sheerun/vim-polyglot'
-Plug 'sjl/vitality.vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': 'yes \| ./install' }
 
 " Really nice prompt
@@ -25,28 +24,28 @@ let g:airline_section_z=''
 
 Plug 'Shougo/vimproc.vim', { 'do' : 'make' }
 
-Plug 'jparise/vim-graphql'
+" Directory viewer
 Plug 'justinmk/vim-dirvish'
-"
-" " Press v over and over again to expand selection
+
+" Press v over and over again to expand selection
 Plug 'terryma/vim-expand-region'
 vmap v <Plug>(expand_region_expand)
 vmap <C-v> <Plug>(expand_region_shrink)
-"
+
 " Awesome autocompletion
 Plug 'Valloric/YouCompleteMe', { 'do': './install.sh --gocode-completer --tern-completer' }
 
 " Lightning fast :Ag searcher
 Plug 'rking/ag.vim'
 
-Plug 'tomtom/tcomment_vim'
-Plug 'tpope/vim-rsi'
-Plug 'tpope/vim-endwise'
-Plug 'tpope/vim-fugitive'
+Plug 'tomtom/tcomment_vim'  " Comment code
+Plug 'tpope/vim-rsi'        " Shell shortcuts?
+" Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-sleuth'
-Plug 'tpope/vim-unimpaired'
+Plug 'tpope/vim-unimpaired' " Helpful mappings with brackets and paste
 
+" Stylesheet support
 Plug 'fleischie/vim-styled-components'
 
 " Allow to :Rename files
@@ -63,7 +62,7 @@ vmap <Enter> <Plug>(EasyAlign)
 nmap <Leader>a <Plug>(EasyAlign)
 
 " ii / ai
-Plug 'michaeljsmith/vim-indent-object'
+Plug 'michaeljsmith/vim-indent-object' " Python indents
 
 " For more reliable indenting and performance
 set foldmethod=indent
@@ -80,7 +79,7 @@ Plug 'tpope/vim-vinegar'
 
 " Better search tools
 Plug 'vim-scripts/IndexedSearch'
-Plug 'vim-scripts/SmartCase'
+Plug 'vim-scripts/SmartCase' " Replace words and keep case
 Plug 'vim-scripts/gitignore'
 
 
@@ -118,6 +117,6 @@ autocmd FileType typescript nmap <buffer> <Leader>t : <C-u>echo tsuquyomi#hint()
 nnoremap H 0
 nnoremap L $
 
-silent! colorscheme wombat256mod
+" silent! colorscheme wombat256mod
 
 set autoread 
